@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <meta charset="UTF-8">
+        <title>Horizontal Scroll with Parallax effect</title>
+        <!--- Basic Framework | jquery, bootstrap (CDN), jquery-ui, & boostrap.js --->
+        <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <link data-require="bootstrap-css@3.2.0" data-semver="3.2.0" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <!--- Style Sheet --->
+        <link rel="stylesheet" type="text/css" media="all" href="assets/css/framework.css" />
+        <!--- For horizontal scroll --->
+        <script src="assets/js/jquery.mousewheel.js"></script>
+        <!--- This is a temprary icons. DELETE it before you ship. --->
+        <link rel="stylesheet" type="text/css" media="all" href="assets/css/ionicons.css" />
+    </head>
+    <body id="flex_height" class="com_enabler">
+        <div class="brake_menu_status"></div>
+        <div class="brake_notif_panel_status"></div>
+        <div class="brand_nav">
+            <div class="width_setter">
+                <div class="left_side">
+                    <div class="fake_logo">ID</div>
+                    <div class="dropdown">
+                        <div class="dropdown-toggle name_of_the_current_page_section" type="button" data-toggle="dropdown">
+                            <div class="seq-pagination title_sequence non_thumbnails">
+                                <div class="ts_wrapper">Cover Page</div>
+                                <div class="ts_wrapper">iOS UI flow</div>
+                                <div class="ts_wrapper">Desktop app UI exploration</div>
+                                <div class="ts_wrapper">Promotional Videos</div>
+                            </div>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <div class="client_setting_popup">
+                                <div class="upper_part">
+                                    <div class="cs_row" data-toggle="modal" data-target="#client_settings">Project Settings</div>
+                                    <div class="cs_row" data-toggle="modal" data-target="#manage_collaborators">Manage Collaborators</div>
+                                    <div class="cs_row" >Transfer Ownership</div>
+                                    <div class="cs_row" >Duplicate</div>
+                                    <div class="cs_row" >Download as zip</div>
+                                </div>
+                                <div class="downer_part">
+                                    <div class="cs_row" >Archive Project</div>
+                                    <div class="cs_row delete_client" >Delete Project</div>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right_side"></div>
+            </div>
+            <div id="fullscreen" style="position: fixed; z-index: 999;">
+                <a href="#" class="requestfullscreen">
+                    <div class="fullscreen_enabler_btn">
+                        <div class="part1"></div>
+                        <div class="part2"></div>
+                    </div>
+                </a>
+                <a href="#" class="exitfullscreen" style="display: none">
+                    <div class="fullscreen_enabler_btn">
+                        <div class="part1"></div>
+                        <div class="part2"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="inner_filler_top"></div>
+        <div class="comment" id="message">
+            <div class="close_and_slide_off"><img src="assets/demo_img/close_dark.svg"/></div>
+            <div class="todo_app_main_ui">
+                <div class="todo_sidebar">
+                    <div class="todo_ui_tab">
+                        <input type="radio" name="tabs" id="tab1" checked>
+                        <div class="tab-label-content" id="tab1-content">
+                            <label for="tab1" class="lab_1">Tasks</label>
+                            <div class="tab-content">
+                                <div role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="11" aria-describedby="progress-text">
+                                    <p id="progress-text"><span id="percentage">9%</span> complete</p>
+                                    <div></div>
+                                    <div class="empty_bar"></div>
+                                    <p class="total_task_num">3 tasks</p>
+                                </div>
+                                <div class="add_task_here">
+                                    <div class="add_task_btb">Add To-do</div>
+                                    <ul class="sort-by">
+                                        <li class="sort" data-sort="date_created"><img src="assets/demo_img/time_clock.svg" class="time_ic"/> Date created</li>
+                                    </ul>
+                                </div>
+                                <ul id="todolist">
+                                    <div class="place_holder_icon_for_tasks" id="place_holder_icon_for_tasks"></div>
+                                    <li class="task_row">
+                                        <div class="left_side">
+                                            <label class="tasks-list-item">
+                                            <input type="checkbox"  value="1" class="tasks-list-cb">
+                                            <span class="tasks-list-mark"></span>
+                                            </label>
+                                        </div>
+                                        <div class="right_side">
+                                            <span class="tasks-list-desc">Fix the background color</span>
+                                            <div class="task_descript">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute iruree irure </div>
+                                        </div>
+                                    </li>
+                                    <li class="task_row">
+                                        <div class="left_side">
+                                            <label class="tasks-list-item">
+                                            <input type="checkbox"  value="1" class="tasks-list-cb">
+                                            <span class="tasks-list-mark"></span>
+                                            </label>
+                                        </div>
+                                        <div class="right_side">
+                                            <span class="tasks-list-desc">233Fix the background color</span>
+                                            <div class="task_descript">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute iruree irure </div>
+                                        </div>
+                                    </li>
+                                    <li class="task_row">
+                                        <div class="left_side">
+                                            <label class="tasks-list-item">
+                                            <input type="checkbox"  value="1" class="tasks-list-cb">
+                                            <span class="tasks-list-mark"></span>
+                                            </label>
+                                        </div>
+                                        <div class="right_side">
+                                            <span class="tasks-list-desc">Fix the background color</span>
+                                            <div class="task_descript">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute iruree irure </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <input type="radio" name="tabs" id="tab2">
+                        <div class="tab-label-content" id="tab2-content">
+                            <label for="tab2" class="lab_2">Completed</label>
+                            <div class="tab-content">
+                                <ul id="todolist_done">
+                                    <div class="completed_tasks_placeholder" id="completed_tasks_placeholder"></div>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="slide"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="when_zoomed_option_nav">
+            <div class="close_and_go_back"><img src="assets/demo_img/close_white.svg"/></div>
+            <div class="name_of_zs">Sign_up_mockup_v1.0.png</div>
+            <div class="zoom_zs">
+                <span class="zz_minus_icon"><img src="assets/demo_img/mag_n.svg"/></span> 
+                <div class="slider"></div>
+                <span class="zz_plus_icon"><img src="assets/demo_img/mag_p.svg"/></span>
+                <div id="text" class="text">
+                    <span></span>
+                    <p class="percentage_m">%</p>
+                </div>
+            </div>
+            <div class="comment_toggle_cont">
+                <div class="comment_on_off_label">Comment</div>
+                <label class="tgl" style="font-size:16px">  
+                <input type="checkbox" checked id="toggle-1"/>
+                <span data-on="On" data-off="Off"></span>
+                </label>
+            </div>
+            <div class="end_focus_mode"><img src="assets/demo_img/burger_w.png"/></div>
+        </div>
+        <div id="sequence" class="seq" >
+            <div class="dramatic_gradient"></div>
+            <ul class="seq-canvas">
+                <li class="step1 valign seq-in">
+                    <div class="vcenter">
+                        <div data-seq class="feature">
+                            <div class="cover_page_presentation">
+                                <div class="client_name">Allbirds</div>
+                                <div class="deck_name">Visual Design R1.4</div>
+                                <div class="leader_role_block your_team">
+                                    <div class="left">
+                                        <div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/rem/128.jpg');"></div>
+                                    </div>
+                                    <div class="right">
+                                        <div class="name">Dave Jenkins</div>
+                                        <div class="role_name">Project leads</div>
+                                    </div>
+                                </div>
+                                <div class="leader_role_block client_team">
+                                    <div class="left">
+                                        <div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/tonypeterson/128.jpg');"></div>
+                                    </div>
+                                    <div class="right">
+                                        <div class="name">Dave Jenkins</div>
+                                        <div class="role_name">Project leads</div>
+                                    </div>
+                                </div>
+                                <div class="client_logo_holder">
+                                    <img src="assets/demo_img/CPBLogo.png"></img>
+                                </div>
+                                <div class="copyright_specification">
+                                    <span>Copyright 2016 CP+B</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="step2 valign">
+                    <div class="vcenter">
+                        <div data-seq class="feature">
+                            <div class="horizontal_scroll pseudo_pos_rel">
+                                <ul class="content demo-x prlx_enabler" id="parent">
+                                    <div class="layout_deck_border"></div>
+                                    <li class="zoomable_li img_mockup">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <div class="zoom_zs_next"><img src="assets/demo_img/arrow_right.svg"/></div>
+                                                <div class="zoom_zs_prev"><img src="assets/demo_img/arrow_left.svg"/></div>
+                                                <div class="invisible_layer"></div>
+                                                <div class="this_will_zoom_more  content_vert">
+                                                    <div class="rl_reset"></div>
+                                                    <div class="naka_cont comment_mode_layer">
+                                                        <div class="exit_layer"></div>
+                                                        <img  src="assets/demo_img/left-shoe.png" />
+                                                        <div class="receptor_layer">
+                                                            <div class="rl1"></div>
+                                                            <div class="rl2"></div>
+                                                            <div class="rl3"></div>
+                                                            <div class="rl4"></div>
+                                                            <div class="rl4_right"></div>
+                                                            <div class="rl5"></div>
+                                                            <div class="rl6"></div>
+                                                            <div class="rl7"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="explanation_block">
+                                                    <div class="inner_text_container">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utd</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="zoomable_li img_mockup">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <div class="notification_badge">3</div>
+                                                <div class="zoom_zs_next"><img src="assets/demo_img/arrow_right.svg"/></div>
+                                                <div class="zoom_zs_prev"><img src="assets/demo_img/arrow_left.svg"/></div>
+                                                <div class="invisible_layer"></div>
+                                                <div class="this_will_zoom_more  content_vert">
+                                                    <div class="rl_reset"></div>
+                                                    <div class="naka_cont comment_mode_layer">
+                                                        <div class="exit_layer"></div>
+                                                        <img  src="assets/demo_img/bg-our-promise-hero.jpg"/>
+                                                        <div class="receptor_layer">
+                                                            <div class="note placed_comment final_in_right ui-draggable show_closer" style="left: 85.8182%; top: 17.1725%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment final_in_mid ui-draggable show_closer" style="left: 12.3269%; top: 5.68979%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment final_in_left ui-draggable show_closer" style="left: 13.0194%; top: 43.5698%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment demo_adj_final_in_down_right final_in_down ui-draggable show_closer" style="left: 69.6676%; top: 82.5409%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rl1"></div>
+                                                            <div class="rl2"></div>
+                                                            <div class="rl3"></div>
+                                                            <div class="rl4"></div>
+                                                            <div class="rl4_right"></div>
+                                                            <div class="rl5"></div>
+                                                            <div class="rl6"></div>
+                                                            <div class="rl7"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="explanation_block">
+                                                    <div class="inner_text_container">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utd</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <div class="zoomable_li text_mockup div_block">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <!--- No style class will be applied to text block. I'll have to see how "Editing mode goes'--->
+                                                <h2  style="font-weight: 300; line-height: 1.6; font-size: 2em; color: rgb(51, 51, 51); margin-top: 0px; background: #fff;">"Turns out, The Worlds's most comfortable shoe is made of wool"</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <li class="zoomable_li img_mockup">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <div class="zoom_zs_next"><img src="assets/demo_img/arrow_right.svg"/></div>
+                                                <div class="zoom_zs_prev"><img src="assets/demo_img/arrow_left.svg"/></div>
+                                                <div class="invisible_layer"></div>
+                                                <div class="this_will_zoom_more  content_vert">
+                                                    <div class="rl_reset"></div>
+                                                    <div class="naka_cont comment_mode_layer">
+                                                        <div class="exit_layer"></div>
+                                                        <img  src="assets/demo_img/story-vision-middle.jpg" />
+                                                        <div class="receptor_layer">
+                                                            <div class="rl1"></div>
+                                                            <div class="rl2"></div>
+                                                            <div class="rl3"></div>
+                                                            <div class="rl4"></div>
+                                                            <div class="rl4_right"></div>
+                                                            <div class="rl5"></div>
+                                                            <div class="rl6"></div>
+                                                            <div class="rl7"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="explanation_block">
+                                                    <div class="inner_text_container">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utd</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="zoomable_li img_mockup">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <div class="notification_badge">3</div>
+                                                <div class="zoom_zs_next"><img src="assets/demo_img/arrow_right.svg"/></div>
+                                                <div class="zoom_zs_prev"><img src="assets/demo_img/arrow_left.svg"/></div>
+                                                <div class="invisible_layer"></div>
+                                                <div class="this_will_zoom_more  content_vert">
+                                                    <div class="rl_reset"></div>
+                                                    <div class="naka_cont comment_mode_layer">
+                                                        <div class="exit_layer"></div>
+                                                        <img  src="assets/demo_img/logo-black.svg"/>
+                                                        <div class="receptor_layer">
+                                                            <div class="note placed_comment final_in_right ui-draggable show_closer" style="left: 85.8182%; top: 17.1725%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment final_in_mid ui-draggable show_closer" style="left: 12.3269%; top: 5.68979%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                    Avoid iFrame
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment final_in_left ui-draggable show_closer" style="left: 13.0194%; top: 43.5698%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                    Avoid iFrame
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment demo_adj_final_in_down_right final_in_down ui-draggable show_closer" style="left: 69.6676%; top: 82.5409%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                    Avoid iFrame
+                                                                </div>
+                                                            </div>
+                                                            <div class="rl1"></div>
+                                                            <div class="rl2"></div>
+                                                            <div class="rl3"></div>
+                                                            <div class="rl4"></div>
+                                                            <div class="rl4_right"></div>
+                                                            <div class="rl5"></div>
+                                                            <div class="rl6"></div>
+                                                            <div class="rl7"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="explanation_block">
+                                                    <div class="inner_text_container">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utd</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <div class="zoomable_li text_mockup div_block">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <!--- No style class will be applied to text block. I'll have to see how "Editing mode goes'--->
+                                                <h2  style="font-weight: 300; line-height: 1.6; font-size: 2em; color: rgb(51, 51, 51); margin-top: 0px; background: #fff;">"Allbirds may be the next big thing in anonymous luxury."</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <li class="zoomable_li img_mockup">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <div class="notification_badge">3</div>
+                                                <div class="zoom_zs_next"><img src="assets/demo_img/arrow_right.svg"/></div>
+                                                <div class="zoom_zs_prev"><img src="assets/demo_img/arrow_left.svg"/></div>
+                                                <div class="invisible_layer"></div>
+                                                <div class="this_will_zoom_more  content_vert">
+                                                    <div class="rl_reset"></div>
+                                                    <div class="naka_cont comment_mode_layer">
+                                                        <div class="exit_layer"></div>
+                                                        <img  src="assets/demo_img/bg-home-hero.jpg"/>
+                                                        <div class="receptor_layer">
+                                                            <div class="note placed_comment final_in_right ui-draggable show_closer" style="left: 85.8182%; top: 17.1725%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment final_in_mid ui-draggable show_closer" style="left: 12.3269%; top: 5.68979%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment final_in_left ui-draggable show_closer" style="left: 13.0194%; top: 43.5698%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment demo_adj_final_in_down_right final_in_down ui-draggable show_closer" style="left: 69.6676%; top: 82.5409%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rl1"></div>
+                                                            <div class="rl2"></div>
+                                                            <div class="rl3"></div>
+                                                            <div class="rl4"></div>
+                                                            <div class="rl4_right"></div>
+                                                            <div class="rl5"></div>
+                                                            <div class="rl6"></div>
+                                                            <div class="rl7"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="explanation_block">
+                                                    <div class="inner_text_container">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utd</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="zoomable_li img_mockup">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <div class="notification_badge">3</div>
+                                                <div class="zoom_zs_next"><img src="assets/demo_img/arrow_right.svg"/></div>
+                                                <div class="zoom_zs_prev"><img src="assets/demo_img/arrow_left.svg"/></div>
+                                                <div class="invisible_layer"></div>
+                                                <div class="this_will_zoom_more  content_vert">
+                                                    <div class="rl_reset"></div>
+                                                    <div class="naka_cont comment_mode_layer">
+                                                        <div class="exit_layer"></div>
+                                                        <img  src="assets/demo_img/shop-men.jpg"/>
+                                                        <div class="receptor_layer">
+                                                            <div class="note placed_comment final_in_right ui-draggable show_closer" style="left: 85.8182%; top: 17.1725%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment final_in_mid ui-draggable show_closer" style="left: 12.3269%; top: 5.68979%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment final_in_left ui-draggable show_closer" style="left: 13.0194%; top: 43.5698%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment demo_adj_final_in_down_right final_in_down ui-draggable show_closer" style="left: 69.6676%; top: 82.5409%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rl1"></div>
+                                                            <div class="rl2"></div>
+                                                            <div class="rl3"></div>
+                                                            <div class="rl4"></div>
+                                                            <div class="rl4_right"></div>
+                                                            <div class="rl5"></div>
+                                                            <div class="rl6"></div>
+                                                            <div class="rl7"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="explanation_block">
+                                                    <div class="inner_text_container">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utd</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="zoomable_li img_mockup">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <div class="zoom_zs_next"><img src="assets/demo_img/arrow_right.svg"/></div>
+                                                <div class="zoom_zs_prev"><img src="assets/demo_img/arrow_left.svg"/></div>
+                                                <div class="invisible_layer"></div>
+                                                <div class="this_will_zoom_more  content_vert">
+                                                    <div class="rl_reset"></div>
+                                                    <div class="naka_cont comment_mode_layer">
+                                                        <div class="exit_layer"></div>
+                                                        <img  src="assets/demo_img/story-vision-top.jpg" />
+                                                        <div class="receptor_layer">
+                                                            <div class="rl1"></div>
+                                                            <div class="rl2"></div>
+                                                            <div class="rl3"></div>
+                                                            <div class="rl4"></div>
+                                                            <div class="rl4_right"></div>
+                                                            <div class="rl5"></div>
+                                                            <div class="rl6"></div>
+                                                            <div class="rl7"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="explanation_block">
+                                                    <div class="inner_text_container">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utd</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="step3 valign">
+                    <div class="vcenter">
+                        <div data-seq class="feature">
+                            <div class="horizontal_scroll pseudo_pos_rel">
+                                <ul class="content demo-x prlx_enabler" id="parent">
+                                    <div class="layout_deck_border"></div>
+                                    <li class="zoomable_li img_mockup">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <div class="notification_badge">3</div>
+                                                <div class="zoom_zs_next"><img src="assets/demo_img/arrow_right.svg"/></div>
+                                                <div class="zoom_zs_prev"><img src="assets/demo_img/arrow_left.svg"/></div>
+                                                <div class="invisible_layer"></div>
+                                                <div class="this_will_zoom_more  content_vert">
+                                                    <div class="rl_reset"></div>
+                                                    <div class="naka_cont comment_mode_layer">
+                                                        <div class="exit_layer"></div>
+                                                        <img  src="assets/demo_img/sc_1.jpg"/>
+                                                        <div class="receptor_layer">
+                                                            <div class="note placed_comment final_in_right ui-draggable show_closer" style="left: 85.8182%; top: 17.1725%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment final_in_mid ui-draggable show_closer" style="left: 12.3269%; top: 5.68979%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                    Avoid iFrame
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment final_in_left ui-draggable show_closer" style="left: 13.0194%; top: 43.5698%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                    Avoid iFrame
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment demo_adj_final_in_down_right final_in_down ui-draggable show_closer" style="left: 69.6676%; top: 82.5409%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                    Avoid iFrame
+                                                                </div>
+                                                            </div>
+                                                            <div class="rl1"></div>
+                                                            <div class="rl2"></div>
+                                                            <div class="rl3"></div>
+                                                            <div class="rl4"></div>
+                                                            <div class="rl4_right"></div>
+                                                            <div class="rl5"></div>
+                                                            <div class="rl6"></div>
+                                                            <div class="rl7"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="explanation_block">
+                                                    <div class="inner_text_container">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utd</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="zoomable_li img_mockup">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <div class="notification_badge">3</div>
+                                                <div class="zoom_zs_next"><img src="assets/demo_img/arrow_right.svg"/></div>
+                                                <div class="zoom_zs_prev"><img src="assets/demo_img/arrow_left.svg"/></div>
+                                                <div class="invisible_layer"></div>
+                                                <div class="this_will_zoom_more  content_vert">
+                                                    <div class="rl_reset"></div>
+                                                    <div class="naka_cont comment_mode_layer">
+                                                        <div class="exit_layer"></div>
+                                                        <img  src="assets/demo_img/sc_4.jpg"/>
+                                                        <div class="receptor_layer">
+                                                            <div class="note placed_comment final_in_right ui-draggable show_closer" style="left: 85.8182%; top: 17.1725%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment final_in_mid ui-draggable show_closer" style="left: 12.3269%; top: 5.68979%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment final_in_left ui-draggable show_closer" style="left: 13.0194%; top: 43.5698%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment demo_adj_final_in_down_right final_in_down ui-draggable show_closer" style="left: 69.6676%; top: 82.5409%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rl1"></div>
+                                                            <div class="rl2"></div>
+                                                            <div class="rl3"></div>
+                                                            <div class="rl4"></div>
+                                                            <div class="rl4_right"></div>
+                                                            <div class="rl5"></div>
+                                                            <div class="rl6"></div>
+                                                            <div class="rl7"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="explanation_block">
+                                                    <div class="inner_text_container">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utd</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <div class="zoomable_li text_mockup div_block">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <!--- No style class will be applied to text block. I'll have to see how "Editing mode goes'--->
+                                                <h2  style="font-weight: 300; line-height: 1.6; font-size: 2em; color: rgb(51, 51, 51); margin-top: 0px; background: #fff;">Hello from the other side I must have called a thousand times</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <li class="zoomable_li img_mockup">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <div class="zoom_zs_next"><img src="assets/demo_img/arrow_right.svg"/></div>
+                                                <div class="zoom_zs_prev"><img src="assets/demo_img/arrow_left.svg"/></div>
+                                                <div class="invisible_layer"></div>
+                                                <div class="this_will_zoom_more  content_vert">
+                                                    <div class="rl_reset"></div>
+                                                    <div class="naka_cont comment_mode_layer">
+                                                        <div class="exit_layer"></div>
+                                                        <img  src="assets/demo_img/sc_2.jpg" />
+                                                        <div class="receptor_layer">
+                                                            <div class="rl1"></div>
+                                                            <div class="rl2"></div>
+                                                            <div class="rl3"></div>
+                                                            <div class="rl4"></div>
+                                                            <div class="rl4_right"></div>
+                                                            <div class="rl5"></div>
+                                                            <div class="rl6"></div>
+                                                            <div class="rl7"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="explanation_block">
+                                                    <div class="inner_text_container">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utd</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <div class="zoomable_li text_mockup div_block">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <!--- No style class will be applied to text block. I'll have to see how "Editing mode goes'--->
+                                                <h2  style="font-weight: 300; line-height: 1.6; font-size: 2em; color: rgb(51, 51, 51); margin-top: 0px;">To tell you I'm sorry for everything that I've doneBut when I call you never seem to be home</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <li class="zoomable_li img_mockup">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <div class="notification_badge">3</div>
+                                                <div class="zoom_zs_next"><img src="assets/demo_img/arrow_right.svg"/></div>
+                                                <div class="zoom_zs_prev"><img src="assets/demo_img/arrow_left.svg"/></div>
+                                                <div class="invisible_layer"></div>
+                                                <div class="this_will_zoom_more  content_vert">
+                                                    <div class="rl_reset"></div>
+                                                    <div class="naka_cont comment_mode_layer">
+                                                        <div class="exit_layer"></div>
+                                                        <img  src="assets/demo_img/bg_plants-9a0f7112.jpg"/>
+                                                        <div class="receptor_layer">
+                                                            <div class="note placed_comment final_in_right ui-draggable show_closer" style="left: 85.8182%; top: 17.1725%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment final_in_mid ui-draggable show_closer" style="left: 12.3269%; top: 5.68979%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment final_in_left ui-draggable show_closer" style="left: 13.0194%; top: 43.5698%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="note placed_comment demo_adj_final_in_down_right final_in_down ui-draggable show_closer" style="left: 69.6676%; top: 82.5409%;">
+                                                                <div class="clickable_note_mark"></div>
+                                                                <div class="comment_holder comment_holder_closer" style="height: 346px; padding-top: 0px; padding-left: 3px; padding-right: 3px;">
+                                                                    <div class="com_closer_inside">&#215;</div>
+                                                                    <div class="leaving_a_comment_action">ng-view if using angular</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rl1"></div>
+                                                            <div class="rl2"></div>
+                                                            <div class="rl3"></div>
+                                                            <div class="rl4"></div>
+                                                            <div class="rl4_right"></div>
+                                                            <div class="rl5"></div>
+                                                            <div class="rl6"></div>
+                                                            <div class="rl7"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="explanation_block">
+                                                    <div class="inner_text_container">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utd</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="step4 valign">
+                    <div class="vcenter">
+                        <div data-seq class="feature">
+                            <div class="horizontal_scroll pseudo_pos_rel">
+                                <ul class="content demo-x prlx_enabler" id="parent">
+                                    <div class="layout_deck_border"></div>
+                                    <div class="zoomable_li text_mockup div_block">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <!--- No style class will be applied to text block. I'll have to see how "Editing mode goes'--->
+                                                <h2  style="font-weight: 300; line-height: 1.6; font-size: 2em; color: rgb(51, 51, 51); margin-top: 0px; background: #fff;">Hello from the other side I must have called a thousand times</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <li class="zoomable_li img_mockup youtube_width_setting">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <div class="zoom_zs_next"><img src="assets/demo_img/arrow_right.svg"/></div>
+                                                <div class="zoom_zs_prev"><img src="assets/demo_img/arrow_left.svg"/></div>
+                                                <div class="invisible_layer"></div>
+                                                <div class="this_will_zoom_more  content_vert">
+                                                    <div class="rl_reset"></div>
+                                                    <div class="naka_cont youtube_container">
+                                                        <div class="youtube" id="PkYT88LXr6o" ></div>
+                                                    </div>
+                                                </div>
+                                                <div class="explanation_block">
+                                                    <div class="inner_text_container">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utd</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <div class="zoomable_li text_mockup div_block">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <!--- No style class will be applied to text block. I'll have to see how "Editing mode goes'--->
+                                                <h2  style="font-weight: 300; line-height: 1.6; font-size: 2em; color: rgb(51, 51, 51); margin-top: 0px; background: #fff;">Hello from the other side I must have called a thousand times</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <li class="zoomable_li img_mockup youtube_width_setting">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <div class="zoom_zs_next"><img src="assets/demo_img/arrow_right.svg"/></div>
+                                                <div class="zoom_zs_prev"><img src="assets/demo_img/arrow_left.svg"/></div>
+                                                <div class="invisible_layer"></div>
+                                                <div class="this_will_zoom_more  content_vert">
+                                                    <div class="rl_reset"></div>
+                                                    <div class="naka_cont youtube_container">
+                                                        <div class="youtube" id="CFREHyK2eCE" ></div>
+                                                    </div>
+                                                </div>
+                                                <div class="explanation_block">
+                                                    <div class="inner_text_container">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utd</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <div class="zoomable_li text_mockup div_block">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <!--- No style class will be applied to text block. I'll have to see how "Editing mode goes'--->
+                                                <h2  style="font-weight: 300; line-height: 1.6; font-size: 2em; color: rgb(51, 51, 51); margin-top: 0px; background: #fff;">Hello from the other side I must have called a thousand times</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <li class="zoomable_li img_mockup youtube_width_setting">
+                                        <div class="aligner">
+                                            <div class="center-box">
+                                                <div class="zoom_zs_next"><img src="assets/demo_img/arrow_right.svg"/></div>
+                                                <div class="zoom_zs_prev"><img src="assets/demo_img/arrow_left.svg"/></div>
+                                                <div class="invisible_layer"></div>
+                                                <div class="this_will_zoom_more  content_vert">
+                                                    <div class="rl_reset"></div>
+                                                    <div class="naka_cont youtube_container">
+                                                        <div class="youtube" id="CCbWyYr82BM" ></div>
+                                                    </div>
+                                                </div>
+                                                <div class="explanation_block">
+                                                    <div class="inner_text_container">
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utd</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <fieldset class="nav" aria-label="Slider buttons" aria-controls="sequence" id="fieldset">
+                <div id="push_aff">
+                    <img src="assets/demo_img/arrow_triangle.png"/>
+                </div>
+                <ul role="navigation" aria-label="Pagination" class="seq-pagination navList thumbnails">
+                    <li class="seq-current">
+                        <span class="page_title">Desktop app UI exploration</span>
+                        <a href="#step1" rel="step2" title="Go to coconut">
+                            <div class="page_tn" style="background-image: url('assets/demo_img/cpb.png');"></div>
+                        </a>
+                    </li>
+                    <li>
+                        <span class="page_title">iOS UI review</span>
+                        <a href="#step2" rel="step1" title="Go to bananas">
+                            <div class="page_tn" style="background-image: url('assets/demo_img/st1.png');"></div>
+                        </a>
+                    </li>
+                    <li>
+                        <span class="page_title">Desktop app UI exploration</span>
+                        <a href="#step3" rel="step2" title="Go to coconut">
+                            <div class="page_tn" style="background-image: url('assets/demo_img/st2.png');"></div>
+                        </a>
+                    </li>
+                    <li>
+                        <span class="page_title">Promotional Videos</span>
+                        <a href="#step4" rel="step3" title="Go to orange">
+                            <div class="page_tn" style="background-image: url('assets/demo_img/st3.png');"></div>
+                        </a>
+                    </li>
+                </ul>
+                <div class="screen_search">
+                    <div class="maginifying_glass_for_screen_search"><i class="icon ion-ios-search-strong"></i></div>
+                    <input placeholder="Search Me" id="box" type="text" class="pagination_search_aff"/> 
+                </div>
+            </fieldset>
+            <div class="detail_info_footer">
+                <div class="deck_org_name">
+                    <div class="name">Project name</div>
+                    <div class="transparent_separator"></div>
+                    <div class="tag">Design Review V1.0</div>
+                </div>
+                <div class="arrow_key_placer">
+                    <button type="button" class="seq-prev pag_adj" aria-label="Previous"><img src="assets/demo_img/pagination_arrow_left.svg"/></button>
+                    <ul class="seq-pagination non_thumbnails ">
+                        <li>Page 1 of 4</li>
+                        <li>Page 2 of 4</li>
+                        <li>Page 3 of 4</li>
+                        <li>Page 4 of 4</li>
+                    </ul>
+                    <button type="button" class="seq-next pag_adj" aria-label="Next"><img src="assets/demo_img/pagination_arrow_right.svg"/></button>
+                </div>
+            </div>
+        </div>
+        <div id="tail">Click to leave a comment</div>
+        <script>
+            $(document).ready(function(){
+                     
+                     $(".screen_search").mouseenter(function(){      
+                         $(this).addClass("expand_search_form");    
+                     });
+                     $(".screen_search").mouseleave(function(){
+                         $(this).removeClass("expand_search_form");
+                     });
+                
+             });
+            
+        </script>
+        <!--- jQuery apps --->
+        <!--- Gulp them before you ship! --->
+        <script src="assets/js/tail_div.js"></script>
+        <script src="assets/js/tail_div_receptor.js"></script>        
+        <script src="assets/js/zoomable_drag_final.js"></script>
+        <script src="assets/js/slider.js"></script>
+        <script src="assets/js/slider_zoom.js"></script>
+        <script src="assets/js/response_toggle.js"></script>
+        <script src="assets/js/comment_spec.js"></script>
+        <script src="assets/js/youtube.js"></script>
+        <script src="assets/js/jquery.mousewheel.js"></script>
+        <script src="assets/js/sequence_basic.js"></script>
+        <script src="assets/js/sequence.js"></script>
+        <script src="assets/js/resize.js"></script>
+        <script src="assets/js/pagination_search.js"></script>
+        <script src="assets/js/nav_bar_notification.js"></script>
+        <script src="assets/js/jquery.fullscreen.min.js"></script>
+        <script src="assets/js/fullscreen_mode_config.js"></script>
+        <script src="assets/js/scroll_config.js"></script>
+        <script src="assets/js/todo_list.js"></script>
+        <script src="assets/js/todo_progress_bar.js"></script>
+        <script src="assets/js/simple_task_tab_actions.js"></script>
+    </body>
+</html>
